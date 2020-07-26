@@ -1,0 +1,4 @@
+name: RandomIconBungee
+version: ${project.version}
+main: com.randomiconbungee.Main
+description: Show a random icon to each player when they ping 
