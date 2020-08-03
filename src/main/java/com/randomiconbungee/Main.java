@@ -17,11 +17,15 @@ import java.util.LinkedList;
 
 public final class Main extends Plugin {
 
+    private static Main instance;
     PingListener pingListener = new PingListener();
     Configuration configuration;
 
     @Override
     public void onEnable() {
+
+        //set instance
+        instance = this;
 
         //load config
 
@@ -60,11 +64,18 @@ public final class Main extends Plugin {
 
         //register ping listener
         getProxy().getPluginManager().registerListener(this, pingListener);
+        //register command listener
+        getProxy().getPluginManager().registerCommand(this, new CommandListener());
+
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    public static Main getInstance(){
+        return instance;
     }
 
     public LinkedList<Favicon> getFavicons(){
